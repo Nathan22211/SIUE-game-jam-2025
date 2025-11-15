@@ -1,4 +1,4 @@
-import os, random
+import os, random, platform
 
 total_score = 0
 
@@ -417,7 +417,7 @@ def result_seven_full(order_1,order_2):
     return [_result_seven_1(order_1), _result_seven_2(order_2)]
 
 def prompt_seven(total_score):
-    panel_score = 2
+    panel_score = (total_score % 2) + 1
     correct = random.randint(1,2)
     answers = [[1, ["2","4"],1,1],[1,["2","1"],1,2],[1,["1","1"],2,2],[1,["1","4"],2,1],[2,["1","1"],1,1],[2,["1","4"],1,2],[2,["2","4"],2,2],[2,["2","1"],2,1]]
     if correct == 1:
@@ -442,15 +442,58 @@ def prompt_seven(total_score):
             combo = [correct, result, order_1, order_2]
     print("out of score")
     return panel_score + total_score
+
+#exploit    
+def result_eight():
+    OS = platform.system()
+    order = 1
+    if order == 1:
+        if OS == "Linux" or OS == "MacOS" or OS == "BSD":
+            result = input("""
+            (1) Mention a vurnability in the Kernal
+            (2) Mention using something to one's advantage
+            (3) Mention a heroic or extraordinary deed
+            """)
+        elif OS == "Windows":
+            result = input("""
+            (1) Mention a vurnability in Win32
+            (2) Mention using something to one's advantage
+            (3) Mention a heroic or extraordinary deed
+            """)
+        else:
+            result = input("""
+            (1) Mention a vurnability in the computer system
+            (2) Mention using something to one's advantage
+            (3) Mention a heroic or extraordinary deed
+            """)
+        return result
+
+def prompt_eight(total_score):
+    panel_score = 1
+    print("He mentioned using an exploit to exploit something...")
+    result = [result_eight(), result_eight()]
+    print(result)
+    while panel_score > 0:
+        if result[0] == "1" and result[1] == "2":
+            print("correct")
+            return panel_score + total_score + 1
+        else:
+            print("incorrect")
+            panel_score -= 1
+            total_score -= 1
+            result = [result_eight(), result_eight()]
+    print("out of score")
+    return panel_score + total_score
     
-                                                        
+                                                      
 score_one = prompt_one(total_score)
 score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
 score_four = prompt_four(score_three)
 score_five = prompt_five(score_four)
 score_six = prompt_six(score_five)
-score = prompt_seven(score_six)
+score_seven = prompt_seven(score_six)
+score = prompt_eight(score_seven)
 
 print("Prompt One: " + str(score_one) + "\n")
 print("Prompt Two: " + str(score_two) + "\n")
@@ -458,4 +501,5 @@ print("Prompt Three: " + str(score_three) + "\n")
 print("Prompt Four: " + str(score_four) + "\n")
 print("Prompt Five: " + str(score_five) + "\n")
 print("Prompt Six: " + str(score_six) + "\n")
+print("Prompt Seven: " + str(score_seven) + "\n")
 print("Total Score: " + str(score))
