@@ -130,7 +130,7 @@ def prompt_three(total_score):
     print("(Partly Translated From Spanish) \" Ok boss, I found the *lima* in the *tomo* you mentioned.\"")
     result = result_three_full()
     while panel_score != 0:
-        if result[0] == "1" and result[1] == 1:
+        if result[0] == "1" and result[1] == "1":
             print("You found a lime in a book?")
             panel_score -= 1
             total_score -= 1
@@ -151,13 +151,90 @@ def prompt_three(total_score):
         else:
             print("[System] error, valid inputs are 1-2 on both")
             result = result_three_full()
-    print("You suddenly hear  scuffle as the comms cut off")
+    print("You suddenly hear a scuffle as the comms cut off")
     return panel_score + total_score
             
-          
+def _result_four_1():
+    result = input("""
+    (1) Mention bringing things together
+    (2) Mention the card game "Casino"
+    (3) Mention Half Life
+    (4) Mention farming
+    """)
+    return result
+def _result_four_2():
+    result = input("""
+    (1) Mention a Financial Insitution
+    (2) Mention card games
+    (3) Mention something used to store currency
+    (4) Mention Dominos 
+    (5) Mention somewhere safe to store goods
+    """)
+    return result
+
+def result_four_full():
+    return [_result_four_1(), _result_four_2()]
+
+def prompt_four(total_score):
+    panel_score = 1
+    correct = random.randint(1,2)
+    if correct == 1:
+        print("Make sure to store the combine's output in our bank")
+    elif correct == 2:
+        print("Why don't you combine those pennies at the bank, they're not made anymore")
+    result = result_four_full()
+    while panel_score != 0:
+        if result[0] == "1":
+            if result[1] == "1" and correct == 2:
+                print("I'll be right to it honey")
+                return panel_score + total_score + 1
+            elif result[1] == "2":
+                print("What use are they at a casino?")
+                panel_score -= 1
+                total_score -= 1
+                result = result_four_full()
+            elif result[1] == "3":
+                print("Can't combine them in that...")
+                panel_score -= 1
+                total_score -= 1
+                result = result_four_full()
+            elif result[1] == "4":
+                print("What do Dominos have to do with it?")
+                panel_score -= 1
+                total_score -= 1
+                result = result_four_full()
+            elif result[1] == "5":
+                print("Don't put them in with the food...")
+                panel_score -= 1
+                total_score -= 1
+                result = result_four_full()
+        elif result[0] == "2":
+            print("What are pips..?")
+            panel_score -= 1
+            total_score -= 1
+            result = result_four_full()
+        elif result[0] == "3":
+            print("This is not Black Mesa")
+            panel_score -= 1
+            total_score -= 1
+            result = result_four_full()
+        elif result[0] == "4":
+            if result[1] == "5" and correct == 1:
+                print("Right, I do have some left.")
+                return panel_score + total_score + 1
+            else:
+                print("why the harvester...")
+                panel_score -= 1
+                total_score -= 1
+                result = result_four_full()
+    print("You seem drunk...")
+    return panel_score + total_score
+    
+    
             
 score_one = prompt_one(total_score)
 score_two = prompt_two(score_one)
-score = prompt_three(score_two)
+score_three = prompt_three(score_two)
+score = prompt_four(score_three)
 
 print("Total Score: " + str(score))
