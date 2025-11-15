@@ -108,6 +108,7 @@ def prompt_two(total_score):
     print("Ugh... I'll find someone more compitent")
     return total_score + panel_score
 
+#lima
 def _result_three_1():
     result = input("""
     (1) Mention limes
@@ -115,6 +116,7 @@ def _result_three_1():
     """)
     return result
 
+#tomo
 def _result_three_2():
     result = input("""
     (1) Mention A volume in a book
@@ -153,7 +155,8 @@ def prompt_three(total_score):
             result = result_three_full()
     print("You suddenly hear a scuffle as the comms cut off")
     return panel_score + total_score
-            
+
+#combine            
 def _result_four_1():
     result = input("""
     (1) Mention bringing things together
@@ -162,6 +165,8 @@ def _result_four_1():
     (4) Mention farming
     """)
     return result
+
+#bank
 def _result_four_2():
     result = input("""
     (1) Mention a Financial Insitution
@@ -176,7 +181,7 @@ def result_four_full():
     return [_result_four_1(), _result_four_2()]
 
 def prompt_four(total_score):
-    panel_score = 1
+    panel_score = 2
     correct = random.randint(1,2)
     if correct == 1:
         print("Make sure to store the combine's output in our bank")
@@ -227,17 +232,95 @@ def prompt_four(total_score):
                 panel_score -= 1
                 total_score -= 1
                 result = result_four_full()
+        else:
+            print("[System] error, valid inputs are 1-4 on the 1st prompt, 1-5 on the 2nd")
+            result = result_four_full()
     print("You seem drunk...")
     return panel_score + total_score
-    
-    
-            
+
+#capital
+def _result_five_1():
+    result = input("""
+    (1) Mention goods made to make other goods
+    (2) Mention a means to aquire goods
+    (3) Mention where the authority of a government is located
+    (4) Mention the most important city in a certain field
+    """)
+    return result
+
+#console
+def _result_five_2():
+    result = input("""
+    (1) Mention a cabinet integrated with home entertainment equipment
+    (2) Mention a computer monitor and keyboard'
+    (3) Mention a video game device
+    (4) Mention a storage tray or container mounted between the seats in a automobile 
+    """)
+    return result
+
+def result_five_full():
+    return [_result_five_1(), _result_five_2()]
+
+def prompt_five(total_score):
+    panel_score = random.randint(1,2)
+    correct_1 = random.randint(1,2) #capital
+    correct_2 = random.randint(1,2) #console
+    if correct_1 == 1:
+        person = "senator"
+    elif correct_1 == 2:
+        person = "intern"
+    print("The " + person + " was trying to figure out how to use the console at the capital")
+    result = result_five_full()
+    while panel_score > 0:
+        if correct_1 == 1:
+            if correct_2 == 1:
+                if result[0] == "3" and result[1] == "2":
+                    print("correct")
+                    return panel_score + total_score + 1 
+                else:
+                    print("incorrect")
+                    panel_score -= 1
+                    total_score -= 1
+                    result = result_five_full()
+            elif correct_2 == 2:
+                if result[0] == "3" and result[1] == "3":
+                    print("correct")
+                    return panel_score + total_score + 1 
+                else:
+                    print("incorrect")
+                    panel_score -= 1
+                    total_score -= 1
+                    result = result_five_full()
+        elif correct_1 == 2:
+            if correct_2 == 1:
+                if result[0] == "4" and result[1] == "2":
+                    print("correct")
+                    return panel_score + total_score + 1 
+                else:
+                    print("incorrect")
+                    panel_score -= 1
+                    total_score -= 1
+                    result = result_five_full()
+            elif correct_2 == 2:
+                if result[0] == "4" and result[1] == "3":
+                    print("correct")
+                    return panel_score + total_score + 1 
+                else:
+                    print("incorrect")
+                    panel_score -= 1
+                    total_score -= 1
+                    result = result_five_full()
+    print("out of score")
+    return panel_score + total_score
+                                                        
 score_one = prompt_one(total_score)
 score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
-score = prompt_four(score_three)
+score_four = prompt_four(score_three)
+score = prompt_five(score_four)
 
 print("Prompt One: " + str(score_one) + "\n")
 print("Prompt Two: " + str(score_two) + "\n")
 print("Prompt Three: " + str(score_three) + "\n")
+print("Prompt Four: " + str(score_four) + "\n")
 print("Total Score: " + str(score))
