@@ -15,7 +15,7 @@ def result_one():
 #dummy
 def prompt_one(total_score):
     panel_score = 1
-    print("She's crying, hand me the dummy")
+    print("She's crying, hand me the *dummy*")
     result = result_one()
     while panel_score > 0:
         if result == "1":
@@ -54,9 +54,9 @@ def prompt_two(total_score):
     panel_score = random.randint(1, 3)
     correct = random.randint(1, 2)
     if correct == 1:
-        print("So Ma,am, you say that battery was involved?")
+        print("So Ma,am, you say that *battery* was involved?")
     elif correct == 2:
-        print("So Ma,am, you say that he snuck an entire battery of these away?")
+        print("So Ma,am, you say that he snuck an entire *battery* of these away?")
     result = result_two()
     while panel_score > 0:
         if result == "1":
@@ -184,9 +184,9 @@ def prompt_four(total_score):
     panel_score = 2
     correct = random.randint(1,2)
     if correct == 1:
-        print("Make sure to store the combine's output in our bank")
+        print("Make sure to store the *combine*'s output in our *bank*")
     elif correct == 2:
-        print("Why don't you combine those pennies at the bank, they're not made anymore")
+        print("Why don't you *combine* those pennies at the *bank*, they're not made anymore")
     result = result_four_full()
     while panel_score > 0:
         if result[0] == "1":
@@ -269,7 +269,7 @@ def prompt_five(total_score):
         person = "senator"
     elif correct_1 == 2:
         person = "intern"
-    print("The " + person + " was trying to figure out how to use the console at the capital")
+    print("The " + person + " was trying to figure out how to use the *console* at the *capital*")
     result = result_five_full()
     while panel_score > 0:
         if correct_1 == 1:
@@ -354,15 +354,15 @@ def prompt_six(total_score):
     correct = random.randint((total_score % 2) + 1, 3)
     answers= [[1, "4", 1],[1, "1", 2],[1, "1", 3],[2, "5", 1],[2, "5", 2],[2, "3", 3],[2, "1", 4],[3, "3", 1],[3, "2", 2], [3, "3", 4]]
     if correct == 1:
-        print("There's a club carved into this")
+        print("There's a *club* carved into this")
         order = random.randint(1,3)
         result = result_six(order)
     elif correct == 2:
-        print("I'll take a club please")
+        print("I'll take a *club* please")
         order = random.randint(1,4)
         result = result_six(order)
     elif correct == 3:
-        print("I'll meet you at the club")
+        print("I'll meet you at the *club*")
         order = random.randint(random.randint(1,2), 4)
         if order == 3:
             order = random.randint(1,2)
@@ -421,9 +421,9 @@ def prompt_seven(total_score):
     correct = random.randint(1,2)
     answers = [[1, ["2","4"],1,1],[1,["2","1"],1,2],[1,["1","1"],2,2],[1,["1","4"],2,1],[2,["1","1"],1,1],[2,["1","4"],1,2],[2,["2","4"],2,2],[2,["2","1"],2,1]]
     if correct == 1:
-        print("The date had a weird effect on him")
+        print("The *date* had a weird *effect* on him")
     elif correct == 2:
-        print("The date went really well till a certain effect triggered a seizere")
+        print("The *date* went really well till a certain *effect* triggered a seizere")
     order_1 = random.randint(1,2)
     order_2 = random.randint(1,2)
     result = result_seven_full(order_1,order_2)
@@ -470,7 +470,7 @@ def result_eight():
 
 def prompt_eight(total_score):
     panel_score = 1
-    print("He mentioned using an exploit to exploit something...")
+    print("He mentioned using an *exploit* to *exploit* something...")
     result = [result_eight(), result_eight()]
     print(result)
     while panel_score > 0:
