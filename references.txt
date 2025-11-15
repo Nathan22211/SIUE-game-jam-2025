@@ -1,0 +1,4 @@
+bank: https://en.wiktionary.org/wiki/bank#English
+combine: https://en.wiktionary.org/wiki/combine#English
+battery: https://en.wiktionary.org/wiki/battery#English
+club: https://en.wiktionary.org/wiki/club#English

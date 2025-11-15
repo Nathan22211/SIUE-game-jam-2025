@@ -377,8 +377,71 @@ def prompt_six(total_score):
             panel_score -= 1
             total_score -= 1
             result = result_six_full(order)
+            combo = [correct, result, order]
     print("out of score")
-    return panel_score + total_score  
+    return panel_score + total_score
+
+#date
+def _result_seven_1(order):
+     if order == 1:
+        result = input("""
+        (1) Mention going out with one you're engaged/married to
+        (2) Mention a fruit
+        """)
+     elif order == 2:
+        result = input("""
+        (1) Mention a fruit
+        (2) Mention going out with one you're engaged/married to
+        """)
+     return result
+
+#effect
+def _result_seven_2(order):
+    if order == 1:
+        result = input("""
+        (1) Mention special illusions in done by techinal means
+        (2) Mention an alteration done to sound
+        (3) Mention a scientific phenomenon
+        (4) Mention the outcome of a cause
+        """)
+    elif order == 2:
+        result = input("""
+        (1) Mention the outcome of a cause
+        (2) Mention a scientific phenomenon
+        (3) Mention an alteration done to sound
+        (4) Mention special illusions in done by techinal means
+        """)
+    return result
+
+def result_seven_full(order_1,order_2):
+    return [_result_seven_1(order_1), _result_seven_2(order_2)]
+
+def prompt_seven(total_score):
+    panel_score = 2
+    correct = random.randint(1,(total_score % 2) + 1)
+    answers = [[1, ["2","4"],1,1],[1,["2","1"],1,2],[1,["1","1"],2,2],[1,["1","4"],2,1],[2,["1","1"],1,1],[2,["1","4"],1,2],[2,["2","4"],2,2],[2,["2","1"],2,1]]
+    if correct == 1:
+        print("The date had a weird effect on him")
+    elif correct == 2:
+        print("The date went really well till a certain effect triggered a seizere")
+    order_1 = random.randint(1,2)
+    order_2 = random.randint(1,2)
+    result = result_seven_full(order_1,order_2)
+    combo = [correct, result, order_1, order_2]
+    while panel_score > 0:
+        if combo in answers:
+            print("correct")
+            return panel_score + total_score + 1
+        else:
+            print("incorrect")
+            panel_score -= 1
+            total_score -= 1
+            order_1 = random.randint(1,2)
+            order_2 = random.randint(1,2)
+            result = result_seven_full(order_1,order_2)
+            combo = [correct, result, order_1, order_2]
+    print("out of score")
+    return panel_score + total_score
     
                                                         
 score_one = prompt_one(total_score)
@@ -386,11 +449,13 @@ score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
 score_four = prompt_four(score_three)
 score_five = prompt_five(score_four)
-score = prompt_six(score_five)
+score_six = prompt_six(score_five)
+score = prompt_seven(score_six)
 
 print("Prompt One: " + str(score_one) + "\n")
 print("Prompt Two: " + str(score_two) + "\n")
 print("Prompt Three: " + str(score_three) + "\n")
 print("Prompt Four: " + str(score_four) + "\n")
 print("Prompt Five: " + str(score_five) + "\n")
+print("Prompt Six: " + str(score_six) + "\n")
 print("Total Score: " + str(score))
