@@ -472,7 +472,6 @@ def prompt_eight(total_score):
     panel_score = 1
     print("He mentioned using an *exploit* to *exploit* something...")
     result = [result_eight(), result_eight()]
-    print(result)
     while panel_score > 0:
         if result[0] == "1" and result[1] == "2":
             print("correct")
@@ -484,8 +483,50 @@ def prompt_eight(total_score):
             result = [result_eight(), result_eight()]
     print("out of score")
     return panel_score + total_score
+
+#extract
+def _result_nine_1(order):
+    if order == 1:
+        result = input("""
+        (1) Mention drawing something out
+        (2) Mention decoctions and infusions
+        """)
+    if order == 2:
+        result = input("""
+        (1) Mention decoctions and infusions
+        (2) Mention drawing something out
+        """)
+    return result
+
+#firm
+def _result_nine_2():
+    result = input("""
+    (1) Mention a partnership of which an entity trades under
+    (2) Mention a buisness enterprise
+    (3) Say it's secure
+    (4) Say it's fixed it place
+    """)
+    return result
     
-                                                      
+def result_nine_full(order):
+    return [_result_nine_1(order), _result_nine_2(), _result_nine_2(), order]
+
+def prompt_nine(total_score):
+    panel_score = 2
+    print("We'll *extract* him with a *firm* handshake into making this deal with our *firm*")
+    result = result_nine_full(random.randint(1,2))
+    while panel_score > 0:
+        if result == ["1","3","2",1] or result == ["2","3","2",2]:
+            print("correct")
+            return panel_score + total_score + 1
+        else:
+            print("incorrect")
+            panel_score -= 1
+            total_score -= 1
+            result = result_nine_full(random.randint(1,2))
+    print("out of score")
+    return panel_score + total_score
+                                                          
 score_one = prompt_one(total_score)
 score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
@@ -493,7 +534,8 @@ score_four = prompt_four(score_three)
 score_five = prompt_five(score_four)
 score_six = prompt_six(score_five)
 score_seven = prompt_seven(score_six)
-score = prompt_eight(score_seven)
+score_eight = prompt_eight(score_seven)
+score = prompt_nine(score_eight)
 
 print("Prompt One: " + str(score_one) + "\n")
 print("Prompt Two: " + str(score_two) + "\n")
@@ -502,4 +544,5 @@ print("Prompt Four: " + str(score_four) + "\n")
 print("Prompt Five: " + str(score_five) + "\n")
 print("Prompt Six: " + str(score_six) + "\n")
 print("Prompt Seven: " + str(score_seven) + "\n")
+print("Prompt Eight: " + str(score_eight) + "\n")
 print("Total Score: " + str(score))
