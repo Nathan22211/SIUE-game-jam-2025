@@ -17,7 +17,7 @@ def prompt_one(total_score):
     panel_score = 1
     print("She's crying, hand me the dummy")
     result = result_one()
-    while panel_score != 0:
+    while panel_score > 0:
         if result == "1":
             print("Where'd you have the crash test dummy the entire time!?")
             panel_score -= 1
@@ -58,7 +58,7 @@ def prompt_two(total_score):
     elif correct == 2:
         print("So Ma,am, you say that he snuck an entire battery of these away?")
     result = result_two()
-    while panel_score != 0:
+    while panel_score > 0:
         if result == "1":
             if correct == 1:
                 print("Yes, he attacked me on 5th Street")
@@ -129,7 +129,7 @@ def prompt_three(total_score):
     panel_score = 1
     print("(Partly Translated From Spanish) \" Ok boss, I found the *lima* in the *tomo* you mentioned.\"")
     result = result_three_full()
-    while panel_score != 0:
+    while panel_score > 0:
         if result[0] == "1" and result[1] == "1":
             print("You found a lime in a book?")
             panel_score -= 1
@@ -183,7 +183,7 @@ def prompt_four(total_score):
     elif correct == 2:
         print("Why don't you combine those pennies at the bank, they're not made anymore")
     result = result_four_full()
-    while panel_score != 0:
+    while panel_score > 0:
         if result[0] == "1":
             if result[1] == "1" and correct == 2:
                 print("I'll be right to it honey")
@@ -237,4 +237,7 @@ score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
 score = prompt_four(score_three)
 
+print("Prompt One: " + str(score_one) + "\n")
+print("Prompt Two: " + str(score_two) + "\n")
+print("Prompt Three: " + str(score_three) + "\n")
 print("Total Score: " + str(score))
