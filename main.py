@@ -312,15 +312,85 @@ def prompt_five(total_score):
                     result = result_five_full()
     print("out of score")
     return panel_score + total_score
+
+#club
+def result_six(order=None):
+    if order == 1:
+        result = input("""
+        (1) Mention a heavy kind of stick
+        (2) Mention an accociation of memebers
+        (3) Mention an establishment that provides staged entertainment
+        (4) Mention playing cards
+        (5) Mention sandwitches 
+        """) 
+    elif order == 2:
+        result = input("""
+        (1) Mention playing cards
+        (2) Mention an establishment that provides staged entertainment
+        (3) Mention an accociation of memebers
+        (4) Mention a heavy kind of stick
+        (5) Mention sandwitches 
+        """) 
+    elif order == 3:
+        result = input("""
+        (1) Mention playing cards
+        (2) Mention the propeller of an aeroplane
+        (3) Mention sandwitches
+        (4) Mention an accociation of memebers
+        (5) Mention a heavy kind of stick
+        """) 
+    elif order == 4:
+        result = input("""
+        (1) Mention sandwitches
+        (2) Mention an accociation of memebers
+        (3) Mention an establishment that provides staged entertainment
+        (4) Mention the propeller of an aeroplane
+        (5) Mention a heavy kind of stick
+        """) 
+    return result
+
+def prompt_six(total_score):
+    panel_score = total_score % 3 + 1
+    correct = random.randint((total_score % 2) + 1, 3)
+    answers= [[1, "4", 1],[1, "1", 2],[1, "1", 3],[2, "5", 1],[2, "5", 2],[2, "3", 3],[2, "1", 4],[3, "3", 1],[3, "2", 2], [3, "3", 4]]
+    if correct == 1:
+        print("There's a club carved into this")
+        order = random.randint(1,3)
+        result = result_six(order)
+    elif correct == 2:
+        print("I'll take a club please")
+        order = random.randint(1,4)
+        result = result_six(order)
+    elif correct == 3:
+        print("I'll meet you at the club")
+        order = random.randint(random.randint(1,2), 4)
+        if order == 3:
+            order = random.randint(1,2)
+        result = result_six(order)
+    combo = [correct, result, order]
+    while panel_score > 0:
+        if combo in answers:
+            print("correct")
+            return panel_score + total_score + 1
+        else:
+            print("incorrect")
+            panel_score -= 1
+            total_score -= 1
+            result = result_six_full(order)
+    print("out of score")
+    return panel_score + total_score  
+    
                                                         
 score_one = prompt_one(total_score)
 score_two = prompt_two(score_one)
 score_three = prompt_three(score_two)
 score_four = prompt_four(score_three)
-score = prompt_five(score_four)
+score_five = prompt_five(score_four)
+score = prompt_six(score_five)
 
 print("Prompt One: " + str(score_one) + "\n")
 print("Prompt Two: " + str(score_two) + "\n")
 print("Prompt Three: " + str(score_three) + "\n")
 print("Prompt Four: " + str(score_four) + "\n")
+print("Prompt Five: " + str(score_five) + "\n")
 print("Total Score: " + str(score))
